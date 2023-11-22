@@ -3,7 +3,7 @@ import armas.*;
 import interfaces.*;
 
 // "Classe mãe dos personagens" a qual todas as armas vão erdar suas propriedades
-//  A classe personagem ja "implementa" a interface PersonagemIterface ->
+//  A classe Personagem ja "implementa" a interface PersonagemIterface ->
 //  -> logo todos os personagens que herdarem esta classe "implementam" esta interface 
 public class Personagem implements PersonagemInterface {
 	 public Arma armaEquipada;
