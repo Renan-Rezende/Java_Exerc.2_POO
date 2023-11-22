@@ -2,7 +2,9 @@ package personagens;
 import armas.*;
 import interfaces.*;
 
-//"Classe mãe dos personagens" a qual todas as armas vão erdar suas propriedades
+// "Classe mÃ£e dos personagens" a qual todas as armas vÃ£o erdar suas propriedades
+//  A classe personagem ja "implementa" a interface PersonagemIterface ->
+//  -> logo todos os personagens que herdarem esta classe "implementam" esta interface 
 public class Personagem implements PersonagemInterface {
 	 public Arma armaEquipada;
 	 public int vida;
@@ -14,39 +16,39 @@ public class Personagem implements PersonagemInterface {
 		 this.escudo = escudo;
 	 }
 	 
-	 // Função atacar (somente o dragão pode equipar a "Bola de fogo")	 
+	 // FunÃ§Ã£o atacar (somente o dragÃ£o pode equipar a "Bola de fogo")	 
 	 public void equiparArma(Arma arma) {
-		 if(!"Dragão Alado".equals(nome)) { // -> verifica se o personagem não é o dragão
-			 if("Bola de fogo".equals(arma.nome)) { // -> se ele não for o dragão e tentar equipar a bola de fogo, retorna um aviso e não equipa a arma
-			    System.out.println("Apenas o dragão pode equipar a bola de fogo");
-			 } else { // -> se ele não for o dragão e tentar equipar qualquer outra arma, equipa a arma
+		 if(!"DragÃ£o Alado".equals(nome)) { // -> verifica se o personagem nÃ£o Ã© o dragÃ£o
+			 if("Bola de fogo".equals(arma.nome)) { // -> se ele nÃ£o for o dragÃ£o e tentar equipar a bola de fogo, retorna um aviso e nÃ£o equipa a arma
+			    System.out.println("Apenas o dragÃ£o pode equipar a bola de fogo");
+			 } else { // -> se ele nÃ£o for o dragÃ£o e tentar equipar qualquer outra arma, equipa a arma
 				 armaEquipada = arma;
 				 System.out.println(arma.nome +" equipada com sucesso!");
 			 }
-		 } else { 	 // -> se o personagem for o dragão ele consegue equipar qualquer arma 
+		 } else { 	 // -> se o personagem for o dragÃ£o ele consegue equipar qualquer arma 
 			 armaEquipada = arma;
 			 System.out.println(arma.nome + " equipada com sucesso!");
 		 }
 		   
 	 };
-     // Função atacar
-	 // -> 1º verifica se o personagem possui uma arma 
-     // -> 2º verifica se o personagem ja esta morto 
-	 // -> 3º verifica se o personagem é uma mago e ataca, pois os magos bloqueiam 3 de dano (condição de ataque diferente) 
-	 // -> 4º ataque do personagem
+     // FunÃ§Ã£o atacar
+	 // -> 1Âº verifica se o personagem possui uma arma 
+     // -> 2Âº verifica se o personagem ja esta morto 
+	 // -> 3Âº verifica se o personagem Ã© uma mago e ataca, pois os magos bloqueiam 3 de dano (condiÃ§Ã£o de ataque diferente) 
+	 // -> 4Âº ataque do personagem
 	 public void atacar(Personagem personagem) {
-/*1º*/   if(armaEquipada == null) {
+/*1Âº*/   if(armaEquipada == null) {
 	    	 System.out.println( nome + " desarmado. Equipe uma arma antes de lutar!");
-/*2º*/   } else if(personagem.vida == 0) {
-	    	 System.out.println("O personagem já esta morto");
-/*3º*/   } else if(personagem.nome == "Mago") {
+/*2Âº*/   } else if(personagem.vida == 0) {
+	    	 System.out.println("O personagem jÃ¡ esta morto");
+/*3Âº*/   } else if(personagem.nome == "Mago") {
 			      personagem.vida += 3 ;
 			      armaEquipada.atacar(personagem);
 			      System.out.println("A magia do mago bloqueou 3 de dano ;(");
 			      if(personagem.vida <= 0) {
 			          System.out.println("O mago morreu!");
 			      }
-/*4º*/   } else if(armaEquipada != null) {
+/*4Âº*/   } else if(armaEquipada != null) {
 		        armaEquipada.atacar(personagem);
 		        if(personagem.vida <= 0) { // -> se o personagem for atacado e ficar com "vida <= 0" ele morre
 			         System.out.println("O personagem " + personagem.nome + " morreu!");
@@ -56,29 +58,29 @@ public class Personagem implements PersonagemInterface {
 	     
      }  
 	 
-	 // Função andar
+	 // FunÃ§Ã£o andar
 	 public void andar(String direcao, int unidades) {
 		 System.out.println(nome + " andou " + unidades + " unidades para " + direcao);
 	 }	
-	 // Função correr
+	 // FunÃ§Ã£o correr
 	 public void correr(String direcao) {
 		 System.out.println(nome + " correu " + 20 + " unidades para " + direcao);
 	 }
-	 // Função voar (Somente o dragao pode voar)
+	 // FunÃ§Ã£o voar (Somente o dragao pode voar)
 	 public void voar(String direcao, int unidades) {
-		 if(!(nome == "Dragão Alado")) {
-			 System.out.println(nome + " não pode voar! Apenas o Dragão Alado.");
+		 if(!(nome == "DragÃ£o Alado")) {
+			 System.out.println(nome + " nÃ£o pode voar! Apenas o DragÃ£o Alado.");
 		 } else {
 			 System.out.println(nome + " voou para " + direcao + " " + unidades);
 		 }
 	 }
 	 
-	 // Função falar
+	 // FunÃ§Ã£o falar
 	 public void falar() {
 		 System.out.println();
 	 }
 	 
-	// Função falar --> Caso o personagem não tenha uma arma retorna um aviso
+	// FunÃ§Ã£o falar --> Caso o personagem nÃ£o tenha uma arma retorna um aviso
 	 public void mostrarArma() {
 		 if(armaEquipada == null) {
 			 System.out.println(nome + " esta desarmado! Arme-o imediatamente!");
